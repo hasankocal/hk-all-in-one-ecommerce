@@ -1,0 +1,20 @@
+{
+    "name": "hk-all-in-one-ecommerce",
+    "version": "1.0.0",
+    "private": true,
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "build": "turbo build",
+        "dev": "turbo dev",
+        "lint": "turbo lint",
+        "clean": "turbo clean"
+    },
+    "devDependencies": {
+        "turbo": "^2.3.3",
+        "prettier": "^3.4.2"
+    },
+    "packageManager": "npm@10.8.2"
+}

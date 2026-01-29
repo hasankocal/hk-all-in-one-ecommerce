@@ -1,0 +1,27 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build Outputs
+.next/
+out/
+build/
+dist/
+target/
+
+# References & Docs
+# (Optional: If you want to gitignore the large references zip)
+# docs/references/*.zip

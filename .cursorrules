@@ -1,0 +1,115 @@
+# HK All-in-One E-Commerce Project Rules
+
+## Project Overview
+Monorepo e-commerce platform with web, mobile, and backend applications.
+
+## Tech Stack
+- **Web**: Next.js 14 (App Router), React, TypeScript, Tailwind CSS
+- **Mobile**: React Native Expo, TypeScript
+- **Backend**: Node.js, Express, TypeScript, Sequelize, MySQL
+- **Shared**: TypeScript types package (@olivefe/types)
+
+## Project Structure
+```
+hk-all-in-one-ecommerce/
+├── apps/
+│   ├── backend/     # Express API (Port 8000)
+│   ├── web/         # Next.js web app (Port 3000)
+│   └── mobile/      # React Native Expo (Port 8081)
+└── packages/
+    └── types/       # Shared TypeScript types
+```
+
+## Coding Standards
+
+### General
+- Use **TypeScript** for all new code
+- Use **kebab-case** for file/folder names
+- Use **ES Modules** (import/export, not require)
+- Prefer **const** over let, avoid var
+- Use **async/await** over promises
+
+### React/Next.js
+- Use **"use client"** directive for client components
+- Use **functional components** with hooks
+- Prefer **named exports** for components
+- Use **Tailwind CSS** for styling (no inline styles)
+- Handle **loading/error states** properly
+
+### TypeScript
+- Enable **strict mode**
+- Define **interfaces** for all data structures
+- Use **type imports** where possible: `import type { ... }`
+- Avoid **any** type, use **unknown** if needed
+
+### Backend
+- Use **TypeScript** with ES Modules
+- Define **types** for Request/Response
+- Use **async/await** for database operations
+- Handle **errors** with try/catch
+- Use **Sequelize** models from @olivefe/types
+
+### Naming Conventions
+- **Files**: kebab-case (product-card.tsx)
+- **Components**: PascalCase (ProductCard)
+- **Functions**: camelCase (getProducts)
+- **Constants**: UPPER_SNAKE_CASE (API_URL)
+- **Interfaces**: PascalCase with I prefix (IProduct) or without (Product)
+
+## Common Patterns
+
+### API Calls (Web)
+```typescript
+import { getProducts } from '@/lib/api';
+const products = await getProducts({ limit: 10 });
+```
+
+### Image Handling
+```typescript
+import { getProductImage } from '@/lib/helpers';
+<Image src={getProductImage(product)} alt={product.name} />
+```
+
+### Authentication
+```typescript
+import { useAuth } from '@/context/AuthContext';
+const { user, isAuthenticated } = useAuth();
+```
+
+## Development Commands
+```bash
+# Backend
+cd apps/backend && npx ts-node server.ts
+
+# Web
+cd apps/web && npm run dev
+
+# Mobile
+cd apps/mobile && npx expo start
+```
+
+## Important Notes
+- **Port 3000**: Next.js web app
+- **Port 8000**: Express backend API
+- **Port 8081**: Expo mobile app
+- **Database**: MySQL (configured in backend/.env)
+- **Shared Types**: Import from @olivefe/types
+
+## React Gotchas
+- Avoid `{count && <Component />}` - use `{count > 0 && <Component />}`
+- This prevents rendering literal "0" when count is 0
+
+## File Organization
+- **Components**: Reusable UI in /components
+- **Pages**: Next.js routes in /app
+- **API**: Backend routes in /routes
+- **Types**: Shared types in packages/types
+- **Utils**: Helper functions in /lib
+
+## Best Practices
+- Keep components small and focused
+- Extract reusable logic to custom hooks
+- Use TypeScript interfaces from @olivefe/types
+- Handle loading and error states
+- Write descriptive commit messages
+- Test on both desktop and mobile viewports

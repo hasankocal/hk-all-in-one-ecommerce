@@ -11,9 +11,9 @@ COPY . .
 # Install all dependencies (workspaces are linked automatically)
 RUN npm install
 
-WORKDIR /app
+WORKDIR /app/apps/backend
 
 EXPOSE 8000
 
-# Start using ts-node from the root workspace where all dependencies are installed
-CMD ["npx", "ts-node", "apps/backend/server.ts"]
+# Start using ts-node from the backend folder so relative imports work
+CMD ["npx", "ts-node", "server.ts"]

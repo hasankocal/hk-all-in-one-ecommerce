@@ -117,4 +117,24 @@ export const trackOrder = async (orderId, email) => {
     }
 };
 
+export const getWishlist = async () => {
+    try {
+        const response = await api.get('/wishlist');
+        return response.data;
+    } catch (error) {
+        console.error("API Error (getWishlist):", error);
+        return [];
+    }
+};
+
+export const toggleWishlistApi = async (productId) => {
+    try {
+        const response = await api.post(`/wishlist/${productId}`);
+        return response.data;
+    } catch (error) {
+        console.error("API Error (toggleWishlistApi):", error);
+        throw error;
+    }
+};
+
 export default api;

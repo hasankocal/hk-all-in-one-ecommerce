@@ -13,7 +13,10 @@ RUN npm install
 
 WORKDIR /app/apps/backend
 
+# Compile TypeScript to JavaScript during build
+RUN npx tsc
+
 EXPOSE 8000
 
-# Run using tsx from the backend directory
-CMD ["npx", "tsx", "server.ts"]
+# Run the compiled JavaScript
+CMD ["node", "dist/server.js"]

@@ -13,7 +13,9 @@ services:
       - db_data:/var/lib/mysql
 
   backend:
-    build: ./apps/backend
+    build: 
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
     container_name: olivefe_backend
     ports:
       - "8000:8000"

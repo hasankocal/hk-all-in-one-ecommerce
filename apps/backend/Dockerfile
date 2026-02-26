@@ -2,23 +2,18 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy root configurations and lockfiles
-COPY package.json package-lock.json ./
-COPY turbo.json ./
+# Copy package configurations
+COPY package.json package-lock.json turbo.json ./
 
-# Copy packages and apps to retain workspace structure
-COPY packages ./packages
-COPY apps/backend ./apps/backend
+# Copy the entire monorepo source (this is necessary for local workspace packages like @olivefe/types)
+COPY . .
 
-# Install dependencies
+# Install all dependencies (workspaces are linked automatically)
 RUN npm install
 
 WORKDIR /app/apps/backend
 
-# Compile TypeScript to JavaScript
-RUN npx tsc
-
 EXPOSE 8000
 
-# Run the compiled JavaScript code
-CMD ["node", "dist/server.js"]
+# Start using ts-node
+CMD ["npm", "run", "start"]

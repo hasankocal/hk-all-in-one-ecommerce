@@ -46,6 +46,31 @@ const seedDatabase = async () => {
 
         console.log('Categories created!');
 
+        // Create Slides (Onboarding)
+        const { Slide } = require('./models/index.js');
+        await Slide.create({
+            title: 'Doğal Lezzetler',
+            subtitle: 'SOFRANIZIN YILDIZI',
+            buttonText: "Ege'nin bereketli topraklarından sofranıza gelen en saf zeytinyağlarını ve doğal ürünleri keşfedin.",
+            image: 'https://olivefe.com.tr/wp-content/uploads/2023/05/43-5lt-z.yagi_-600x901.jpg',
+            order: 1
+        });
+        await Slide.create({
+            title: 'Soğuk Sıkım',
+            subtitle: 'SAĞLIK VE KALİTE',
+            buttonText: 'Bedeninize sağlık katan, yüksek polifenollü ve düşük asitli özel üretim soğuk sıkım yağlarımızla tanışın.',
+            image: 'https://olivefe.com.tr/wp-content/uploads/2023/05/37-750z.yagi_-600x901.jpg',
+            order: 2
+        });
+        await Slide.create({
+            title: 'Güvenli Alışveriş',
+            subtitle: 'HIZLI TESLİMAT',
+            buttonText: 'Doğallıktan ödün vermeden, kapınıza kadar hızlı ve güvenli teslimat garantisiyle.',
+            image: 'https://olivefe.com.tr/wp-content/uploads/2023/05/1-kekiksuyu-600x901.jpg',
+            order: 3
+        });
+        console.log('Slides (Onboarding) created!');
+
         // --- Zeytinyağları ---
         await Product.create({
             name: 'Naturel Sızma Zeytinyağı (5 Lt.) Teneke',

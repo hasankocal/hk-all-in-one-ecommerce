@@ -25,9 +25,21 @@ services:
       - DB_PASSWORD=rootpassword
       - DB_NAME=olivefe_db
       - JWT_SECRET=supersecretkey
-      - PORT=8000
     depends_on:
       - db
+
+  web:
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    container_name: olivefe_web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api
+    depends_on:
+      - backend
 
 volumes:
   db_data:

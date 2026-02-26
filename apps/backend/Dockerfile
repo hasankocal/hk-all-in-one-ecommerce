@@ -11,12 +11,9 @@ COPY . .
 # Install all dependencies (workspaces are linked automatically)
 RUN npm install
 
-WORKDIR /app/apps/backend
-
-# Compile TypeScript
-RUN npx tsc
+WORKDIR /app
 
 EXPOSE 8000
 
-# Run the compiled js from absolute path to avoid directory ambiguity
-CMD ["node", "/app/apps/backend/dist/server.js"]
+# Run using tsx, which better handles monorepo module resolution
+CMD ["npx", "tsx", "apps/backend/server.ts"]

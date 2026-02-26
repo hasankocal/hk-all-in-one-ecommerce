@@ -13,7 +13,7 @@ services:
       - db_data:/var/lib/mysql
 
   backend:
-    build: 
+    build:
       context: .
       dockerfile: ./apps/backend/Dockerfile
     container_name: olivefe_backend
@@ -47,7 +47,7 @@ services:
       dockerfile: ./apps/mobile/Dockerfile
     container_name: olivefe_mobile
     ports:
-      - "3002:80"
+      - "8081:8081"
     environment:
       - NODE_ENV=production
       - EXPO_PUBLIC_API_URL=http://192.168.1.41:8000/api

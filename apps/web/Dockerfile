@@ -1,8 +1,5 @@
-FROM node:20-alpine AS base
+FROM node:20-slim AS base
 
-# Install dependencies only when needed
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -30,7 +27,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN npx turbo run build --filter=web
 
 # Production image, copy all the files and run next
-FROM node:20-alpine AS runner
+FROM node:20-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production

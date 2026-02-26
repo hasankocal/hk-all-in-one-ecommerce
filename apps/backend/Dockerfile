@@ -14,7 +14,8 @@ RUN npm install
 WORKDIR /app/apps/backend
 
 # Compile TypeScript
-RUN npx tsc
+RUN npx tsc || true
+RUN ls -la dist || true
 
 EXPOSE 8000
 

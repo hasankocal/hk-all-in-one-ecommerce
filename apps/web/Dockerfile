@@ -1,4 +1,4 @@
-FROM node:20-slim AS base
+FROM node:20 AS base
 
 WORKDIR /app
 
@@ -6,11 +6,10 @@ WORKDIR /app
 COPY package.json package-lock.json turbo.json ./
 # Copy workspace packages if any
 COPY packages ./packages
-
 # Copy the specific app we want to build
 COPY apps/web ./apps/web
 
-RUN npm ci
+RUN npm install
 
 # Rebuild the source code only when needed
 FROM base AS builder

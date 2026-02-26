@@ -20,6 +20,7 @@ services:
     ports:
       - "8000:8000"
     environment:
+      - PORT=8000
       - DB_HOST=db
       - DB_USER=root
       - DB_PASSWORD=rootpassword

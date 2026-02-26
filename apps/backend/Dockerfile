@@ -14,10 +14,9 @@ RUN npm install
 WORKDIR /app/apps/backend
 
 # Compile TypeScript
-RUN npx tsc || true
-RUN ls -la dist || true
+RUN npx tsc
 
 EXPOSE 8000
 
-# Run the compiled js
-CMD ["node", "dist/server.js"]
+# Run the compiled js from absolute path to avoid directory ambiguity
+CMD ["node", "/app/apps/backend/dist/server.js"]

@@ -10,12 +10,15 @@ COPY turbo.json ./
 COPY packages ./packages
 COPY apps/backend ./apps/backend
 
-# Install dependencies (workspaces will be linked automatically)
+# Install dependencies
 RUN npm install
 
 WORKDIR /app/apps/backend
 
+# Compile TypeScript to JavaScript
+RUN npx tsc
+
 EXPOSE 8000
 
-# Run in dev mode as specified originally
-CMD ["npm", "run", "dev"]
+# Run the compiled JavaScript code
+CMD ["node", "dist/server.js"]

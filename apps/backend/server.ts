@@ -43,6 +43,19 @@ const startServer = async () => {
         await sequelize.authenticate();
         console.log('Database connection has been established successfully.');
 
+        // CLI Argümanı kontrolü (XML İçeri aktarımı)
+        if (process.argv.includes('--import-xml')) {
+            console.log('XML İçe aktarma (Import) Modu Başlatılıyor...');
+            // Burada import mantığını içeren fonksiyonu tetikleyeceğiz
+            try {
+                const { importData } = require('./src/import-xml');
+                await importData();
+            } catch (e) {
+                console.log("Import script hata", e);
+            }
+            return;
+        }
+
         // Sync models
         await sequelize.sync();
 

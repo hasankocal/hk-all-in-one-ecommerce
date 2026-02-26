@@ -13,7 +13,10 @@ RUN npm install
 
 WORKDIR /app/apps/backend
 
+# Compile TypeScript
+RUN npx tsc
+
 EXPOSE 8000
 
-# Start using ts-node from the backend folder so relative imports work
-CMD ["npx", "ts-node", "server.ts"]
+# Run the compiled js
+CMD ["node", "dist/server.js"]

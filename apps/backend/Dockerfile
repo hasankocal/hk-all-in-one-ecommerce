@@ -11,9 +11,9 @@ COPY . .
 # Install all dependencies (workspaces are linked automatically)
 RUN npm install
 
-WORKDIR /app
+WORKDIR /app/apps/backend
 
 EXPOSE 8000
 
-# Run using tsx, which better handles monorepo module resolution
-CMD ["npx", "tsx", "apps/backend/server.ts"]
+# Run using tsx from the backend directory
+CMD ["npx", "tsx", "server.ts"]

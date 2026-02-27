@@ -3,7 +3,6 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    container_name: olivefe_db
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: olivefe_db
@@ -16,7 +15,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/backend/Dockerfile
-    container_name: olivefe_backend
     ports:
       - "8000:8000"
     environment:
@@ -33,7 +31,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/web/Dockerfile
-    container_name: olivefe_web
     ports:
       - "3001:3000"
     environment:
@@ -46,7 +43,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/mobile/Dockerfile
-    container_name: olivefe_mobile
     ports:
       - "8081:8081"
     environment:
